@@ -9,6 +9,67 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+ .bg {
+    --background: var(--ion-color-light);
+    background: var(--ion-color-light);
+  }
+  .bg-primary {
+    --background: var(--ion-color-primary);
+    background: var(--ion-color-primary); 
+  }
+
+
+ // Animate CSS
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.animated.infinite {
+    animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+    animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+    animation-duration: 0.75s;
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 

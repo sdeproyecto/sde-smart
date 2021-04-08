@@ -1,0 +1,65 @@
+<ion-content class="animated fadeIn login auth-page ion-padding bg">
+  <div class="login-content bg">
+
+    <!-- Logo -->
+    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+      <div class="logo">
+
+      </div>
+      <ion-text color="primary">
+        <h2 class="ion-padding-top ion-text-center ion-no-margin">
+          Iniciar Sesión
+        </h2>
+      </ion-text>
+      <ion-text color="light">
+        <p class="ion-padding-top ion-text-center ion-no-margin">
+          Inicie sesión para continuar
+        </p>
+      </ion-text>
+    </div>
+
+    <!-- Login form -->
+    <form [formGroup]="todo" (ngSubmit)="login()">
+      <div class="ion-padding-horizontal">
+        <ion-input placeholder="Usuario" class="inputLigth ion-margin-bottom" type="text" 
+          formControlName="username" required></ion-input>
+        <ion-input placeholder="Contraseña" class="inputLigth ion-margin-top" clearOnEdit="false"
+          type="password" formControlName="password" required></ion-input>
+      </div>
+
+      <!--</form> -->
+
+
+      <div class="ion-text-center ion-padding buttonDiv">
+        <ion-button shape="round" color="primary" type="submit" class="bLogin" [disabled]="!todo.valid" expand="block">
+          <p class="buttonL">Iniciar Sesión</p>
+        </ion-button>
+      </div>
+      <div class="ion-text-center" (click)="forgot()">
+        <ion-text color="medium">
+          <p><span class="pass">¿Olvido su contraseña?</span></p>
+        </ion-text>
+      </div>
+
+    </form>
+    <div>
+      <div class="ion-text-center" (click)="gotoRegister()">
+        <ion-text color="medium">
+          <p><span class="pass">Aún no tienes cuenta? </span> <span class="labelRegister">REGISTRATE</span></p>
+        </ion-text>
+      </div>
+      <div class="ion-text-center">
+        <ion-text color="primary">
+          <p style="font-size: 12px;">
+            <a target="_blank" rel="noopener noreferrer" href="https://google.com">
+              <ion-text color="primary">
+                <b>Política de privacidad</b>
+              </ion-text>
+            </a>
+            de Wayu
+          </p>
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

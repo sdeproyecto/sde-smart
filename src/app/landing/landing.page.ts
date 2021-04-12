@@ -72,8 +72,8 @@ export class LandingPage implements OnInit {
     this.customersService.searchPhone(this.phoneData.imei).then(val => {
       console.log(' val', val);
       if (val && val.length > 0) {
-        const aux = val[0].bd;
-        console.log(aux);
+        const aux = val[0];
+        console.log(JSON.stringify(aux));
         if (aux.activo) {
           this.navCtrl.navigateRoot('/login');
         } else {
@@ -103,6 +103,7 @@ export class LandingPage implements OnInit {
         this.codValid = true;
         this.auxBd = val[0].bd;
         console.log(this.auxBd);
+        this.phoneData.cod_cliente = val[0].cod_cliente;
       }
       this.isSearching = false;
     });

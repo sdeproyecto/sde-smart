@@ -73,7 +73,7 @@ export class CustomersService {
         // alert(JSON.stringify(obj));
         return this.dbPrimary.collection('telefonos').doc(obj.imei).set(obj)
             .then((docRef) => {
-                console.log('Document written with ID: ', docRef.id);
+                console.log('Document written');
             })
             .catch((error) => {
                 console.error('Error adding document: ', error);

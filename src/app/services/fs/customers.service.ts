@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 // tslint:disable-next-line:import-blacklist
 import { Subject } from 'rxjs';
-
+import * as firebase from 'firebase';
 class Customer {
     // tslint:disable-next-line:variable-name
     public _id?: string;
@@ -19,6 +18,7 @@ class Customer {
     ciudad: string;
     pais: string;
     status: string;
+    bd?: any;
 }
 
 @Injectable({
@@ -26,20 +26,27 @@ class Customer {
 })
 
 export class CustomersService {
-    private customersCollection: AngularFirestoreCollection<Customer>;
     private customers: Observable<Customer[]>;
-    private customerDoc: AngularFirestoreDocument<Customer>;
     private Customer: Observable<Customer>;
     dataCustomer: any;
     private showLoading = new Subject();
     // tslint:disable-next-line:variable-name
     _showData = this.showLoading.asObservable();
+    firebaseConfig = {
+        apiKey: 'AIzaSyD9V8YFIML3ymn1jwpjRIA6flT7zSR66zA',
+        authDomain: 'sde-master.firebaseapp.com',
+        projectId: 'sde-master',
+        storageBucket: 'sde-master.appspot.com',
+        messagingSenderId: '1034297079589',
+        appId: '1:1034297079589:web:1297',
+        measurementId: 'G-9EG0BX2DY6'
+    };
+    primaryApp: any;
+    dbPrimary: any;
 
-
-    constructor(
-        private afs: AngularFirestore) {
-        this.customersCollection = this.afs.collection<Customer>('clientes');
-        this.customers = this.customersCollection.valueChanges();
+    constructor() {
+        this.primaryApp = firebase.initializeApp(this.firebaseConfig, 'sds-master');
+        this.dbPrimary = this.primaryApp.firestore();
     }
 
     setDataHelp(data) {
@@ -50,101 +57,60 @@ export class CustomersService {
         this.showLoading.next(flag);
     }
 
-
     getAllCustomers() {
-        this.customersCollection = this.afs.collection<Customer>('clientes');
-        return this.customers = this.customersCollection.snapshotChanges()
-            .pipe(map(changes => {
-                return changes.map(action => {
-                    const data: any = action.payload.doc.data() as Customer;
-                    return data;
-                });
-            }));
-    }
-
-
-    addCustomer(customer: Customer) {
-        console.log(customer);
-        const id = this.afs.createId();
-        customer._id = id;
-        this.customersCollection.doc(id).set({
-            cod_cliente: customer.cod_cliente,
-            nombre: customer.nombre,
-            razon_social: customer.razon_social,
-            tel: customer.tel,
-            direc: customer.direc,
-            pais: customer.pais,
-            ciudad: customer.ciudad,
-            status: customer.status
-        })
-            .then(() => {
-                console.log(customer);
-            })
-            .catch((error) => {
-                console.error('Error writing document: ', error);
+        return this.dbPrimary.collection('clientes').get().then((querySnapshot) => {
+            const aux = [];
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+                aux.push(doc.data());
             });
-    }
-
-    deleteCustomer(customer: Customer) {
-        const id: string = customer._id;
-        return this.afs.collection('clientes').doc(id).delete().then(() => {
-        }).catch((error) => {
-            console.error('Error writing document: ', error);
+            // console.log(querySnapshot);
+            return aux;
         });
     }
 
-    desactiveCustomer(customer: Customer): void {
-        const id: string = customer._id;
-        this.customerDoc = this.afs.doc<Customer>(`clientes/${id}`);
-        this.customerDoc.update({
-            cod_cliente: customer.cod_cliente,
-            nombre: customer.nombre,
-            razon_social: customer.razon_social,
-            tel: customer.tel,
-            direc: customer.direc,
-            pais: customer.pais,
-            ciudad: customer.ciudad,
-            status: customer.status
-        })
-            .then(() => {
+    setPhone(obj) {
+        // alert(JSON.stringify(obj));
+        return this.dbPrimary.collection('telefonos').doc(obj.imei).set(obj)
+            .then((docRef) => {
+                console.log('Document written with ID: ', docRef.id);
             })
             .catch((error) => {
-                console.error('Error writing document: ', error);
+                console.error('Error adding document: ', error);
             });
     }
 
-    updateCustomer(customer: Customer): void {
-        const id: string = customer._id;
-        console.log('updateCustomer: ', id);
-        this.customerDoc = this.afs.doc<Customer>(`clientes/${id}`);
-        this.customerDoc.update({
-            cod_cliente: customer.cod_cliente,
-            nombre: customer.nombre,
-            razon_social: customer.razon_social,
-            tel: customer.tel,
-            direc: customer.direc,
-            pais: customer.pais,
-            ciudad: customer.ciudad,
-            status: customer.status
-        })
-            .then(() => {
-            })
-            .catch((error) => {
-                console.error('Error writing document: ', error);
-            });
-    }
-
-    buscarCustomer(termino: string) {
-        this.customersCollection = this.afs.collection<Customer>('clientes',
-            ref => ref.orderBy('nombre')
-                .startAt(termino));
-        return this.customers = this.customersCollection.snapshotChanges()
-            .pipe(map(changes => {
-                return changes.map(action => {
-                    const data = action.payload.doc.data() as Customer;
-                    return data;
+    searchCustomer(search) {
+        return this.dbPrimary.collection('clientes').where('cod_cliente', '==', search)
+            .get()
+            .then((querySnapshot) => {
+                const aux = [];
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data());
+                    aux.push(doc.data());
                 });
-            }));
+                // console.log(querySnapshot);
+                return aux;
+            })
+            .catch((error) => {
+                console.log('Error getting documents: ', error);
+            });
     }
 
+    searchPhone(search) {
+        return this.dbPrimary.collection('telefonos').where('imei', '==', search)
+            .get()
+            .then((querySnapshot) => {
+                const aux = [];
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data());
+                    aux.push(doc.data());
+                });
+                // console.log(querySnapshot);
+                return aux;
+            })
+            .catch((error) => {
+                console.log('Error getting documents: ', error);
+            });
+    }
 }

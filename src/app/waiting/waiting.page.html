@@ -1,0 +1,33 @@
+<ion-content class="animated fadeIn login auth-page ion-padding bg">
+  <div class="login-content bg">
+
+    <!-- Logo -->
+    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+      <div class="logo">
+
+      </div>
+      <ion-text color="primary">
+        <h2 class="ion-padding-bottom ion-text-center ion-no-margin">
+          Estas en proceso de Validación <br>
+        </h2>
+        <ion-badge color="medium">
+          esperando activación
+        </ion-badge>
+      </ion-text>
+    </div>
+
+    <div class="divWait">
+      <ion-spinner color="primary">
+
+      </ion-spinner>
+    </div>
+
+    <div>
+      <div class="ion-text-center" (click)="gotoLogin()">
+        <ion-text color="medium">
+          <p><span class="pass">Ya tienes cuenta? </span> <span class="labelRegister">Entrar</span></p>
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

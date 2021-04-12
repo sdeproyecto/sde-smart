@@ -1,0 +1,46 @@
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 0px auto 0;
+    border-radius: 10%;
+    background: url("../../assets/imgs/shapes.png") no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+.login-content {
+    height: 100%;
+    display: grid;
+}
+
+ion-input {
+    --placeholder-color: var(--ion-color-medium);
+    --placeholder-opacity: 1;
+}
+
+.pass {
+    font-size: 12px;
+}
+.labelRegister {
+    font-size: 14px;
+    color: var(--ion-color-primary);
+}
+
+.buttonDiv {
+    margin-top: 32px;
+}
+
+.inputLigth {
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+    border: 1px solid #dedede;
+    border-radius: 54px;
+    height: 52px;
+    font-size: 14px;
+    position: relative;
+    z-index: 10;
+    color: var(--ion-color-primary);
+}

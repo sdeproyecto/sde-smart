@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,9 @@ export class AuthService {
   }
 
   signup(email: string, password: string) {
+    const firebaseAux = JSON.parse(window.localStorage.getItem('fbKey'));
+    console.log(firebaseAux);
+    firebase.initializeApp(firebaseAux);
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 

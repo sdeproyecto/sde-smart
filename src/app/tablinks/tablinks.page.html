@@ -1,0 +1,29 @@
+<ion-tabs #myTabs mode='ios' (ionTabsDidChange)="getTab($event)">
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button  class="divHome" tab="marcas" (click)="openTab('marcas', $event)">
+      <div class="divTab" [ngClass]="{'tabAct': nameTab == 'marcas'}">
+        <ion-icon [color]="nameTab == 'marcas' ? 'bwhite':'dark'" name="checkmark-done">
+        </ion-icon>
+        <ion-label>Marcas</ion-label>
+      </div>
+    </ion-tab-button>
+
+    <ion-tab-button class="divHome" tab="rondas" (click)="openTab('rondas', $event)">
+      <div class="divTab" [ngClass]="{'tabAct': nameTab == 'rondas'}">
+        <ion-icon [color]="nameTab == 'rondas' ? 'bwhite':'dark'" name="git-compare">
+        </ion-icon>
+        <ion-label>Rondas</ion-label>
+      </div>
+    </ion-tab-button>
+    <ion-tab-button class="divProfile"  tab="empleado" (click)="openTab('empleado', $event)">
+      <div class="divTab" [ngClass]="{'tabAct': nameTab == 'empleado'}">
+        <ion-icon  [color]="nameTab == 'empleado' ? 'bwhite':'dark'" name="person">
+        </ion-icon>
+        <ion-label>Empleado</ion-label>
+      </div>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+
+</ion-tabs>

@@ -22,12 +22,10 @@
     <div *ngIf="load">
       <form [formGroup]="todo" (ngSubmit)="reg()">
         <div class="ion-padding-horizontal">
-          <ion-input placeholder="Teléfono" class="inputLigth ion-margin-bottom" type="tel" formControlName="tel"
+          <ion-input placeholder="Número del celular " class="inputLigth ion-margin-bottom" type="tel" formControlName="tel"
             required></ion-input>
-          <ion-input placeholder="email" class="inputLigth ion-margin-top" clearOnEdit="false" type="email"
-            formControlName="email" required></ion-input>
-          <ion-input placeholder="Contraseña" class="inputLigth ion-margin-top" clearOnEdit="false" type="password"
-            formControlName="password" required></ion-input>
+          <ion-input placeholder="Nombre del celular" class="inputLigth ion-margin-top"  type="text"
+            formControlName="nombre" required></ion-input>
           <div style="position: relative;">
             <ion-input (ionInput)="checkCod()" placeholder="COD Cliente" class="inputLigth ion-margin-top" type="text"
               formControlName="cod_cliente" required></ion-input>

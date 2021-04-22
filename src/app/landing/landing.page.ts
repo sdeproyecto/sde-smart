@@ -45,17 +45,18 @@ export class LandingPage implements OnInit {
     this.menu.close();
     this.menu.swipeGesture(false);
 
+    const aux1 = JSON.parse(window.localStorage.getItem('validUser'));
+    if (aux1) {
+      this.navCtrl.navigateRoot('/home');
+      return;
+    }
   }
 
   private iniForm() {
     this.todo = this.formBuilder.group({
       cod_cliente: ['', Validators.required],
       tel: ['', Validators.required],
-      password: ['', Validators.required],
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9_.+-]+)\\.([a-zA-Z]{2,5})$')
-      ])),
+      nombre: ['', Validators.required],
     });
   }
 
@@ -100,10 +101,12 @@ export class LandingPage implements OnInit {
     this.customersService.searchCustomer(text).then(val => {
       console.log(' val', val);
       if (val && val.length > 0) {
-        this.codValid = true;
-        this.auxBd = val[0].bd;
-        console.log(this.auxBd);
-        this.phoneData.cod_cliente = val[0].cod_cliente;
+        if (val[0].bd && val[0].bd.apiKey) {
+          this.codValid = true;
+          this.auxBd = val[0].bd;
+          console.log(this.auxBd);
+          this.phoneData.cod_cliente = val[0].cod_cliente;
+        }
       }
       this.isSearching = false;
     });
@@ -138,16 +141,18 @@ export class LandingPage implements OnInit {
     this.eneLoadingPic();
 
     window.localStorage.setItem('fbKey', JSON.stringify(this.auxBd));
-    const auxLogin = {
+    /*const auxLogin = {
       email: this.todo.value.email,
       password: this.todo.value.password
     };
-    window.localStorage.setItem('loginUser', JSON.stringify(auxLogin));
-    window.localStorage.setItem('phoneData', JSON.stringify(this.phoneData));
+    window.localStorage.setItem('loginUser', JSON.stringify(auxLogin));*/
+    this.phoneData.nombre = this.todo.value.nombre;
+    this.phoneData.telefono = this.todo.value.tel;
     this.customersService.setPhone(this.phoneData);
+    window.localStorage.setItem('phoneData', JSON.stringify(this.phoneData));
     setTimeout(() => {
       this.loadingPic.dismiss();
-      this.navCtrl.navigateRoot('/login');
+      this.navCtrl.navigateRoot('/waiting');
     }, 2000);
     console.log('0 LoginPage');
   }

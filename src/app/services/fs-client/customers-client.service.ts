@@ -79,6 +79,30 @@ export class CustomersClientService {
             });
     }
 
+    signin(email, password) {
+        console.log(this.secondaryApp.auth().currentUser);
+        this.checkUser();
+        return this.secondaryApp.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in
+                console.log(userCredential.user);
+                window.localStorage.setItem('saveUser', '1');
+                return userCredential;
+                // ...
+            })
+            .catch((error) => {
+                console.error(error.code);
+                // ..
+            });
+    }
+
+    logOut(){
+        return this.secondaryApp.auth().logout().then((dat) => {
+            console.log(dat);
+            return 'dat';
+        });
+    }
+
     checkUser() {
         this.secondaryApp.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -93,6 +117,23 @@ export class CustomersClientService {
 
     buscarCustomer(search) {
         return this.dbSecondary.collection('clientes').where('cod_cliente', '==', search)
+            .get()
+            .then((querySnapshot) => {
+                const aux = [];
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data());
+                    aux.push(doc.data());
+                });
+                // console.log(querySnapshot);
+                return aux;
+            })
+            .catch((error) => {
+                console.log('Error getting documents: ', error);
+            });
+    }
+
+    searchUser(search) {
+        return this.dbSecondary.collection('usuarios').where('email', '==', search)
             .get()
             .then((querySnapshot) => {
                 const aux = [];

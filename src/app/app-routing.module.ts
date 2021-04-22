@@ -8,10 +8,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
     path: 'landing',
     loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
   },
@@ -22,7 +18,8 @@ const routes: Routes = [
   {
     path: 'waiting',
     loadChildren: () => import('./waiting/waiting.module').then( m => m.WaitingPageModule)
-  }
+  },
+  { path: 'home', loadChildren: () => import('./tablinks/tablinks.module').then(m => m.TablinksPageModule) },
 ];
 
 @NgModule({

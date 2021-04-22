@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { CustomersClientService } from 'src/app/services/fs-client/customers-client.service';
 
 @Component({
   selector: 'app-empleado',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpleadoPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public navCtrl: NavController,
+    public customerService: CustomersClientService) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.customerService.logOut().then(() => {
+      window.localStorage.removeItem('validUser');
+    });
+    this.navCtrl.navigateRoot('/login');
+  }
+
 }
+

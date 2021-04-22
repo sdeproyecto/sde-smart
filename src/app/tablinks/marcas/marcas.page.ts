@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { CustomersClientService } from './../../services/fs-client/customers-client.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarcasPage implements OnInit {
 
-  constructor(public customerService: CustomersClientService) { }
+  constructor(
+    public navCtrl: NavController,
+    public customerService: CustomersClientService) { }
 
   ngOnInit() {
   }
@@ -17,6 +20,7 @@ export class MarcasPage implements OnInit {
     this.customerService.logOut().then(() => {
       window.localStorage.removeItem('validUser');
     });
+    this.navCtrl.navigateRoot('/login');
   }
 
 }

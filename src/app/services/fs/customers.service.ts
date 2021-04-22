@@ -70,7 +70,8 @@ export class CustomersService {
     }
 
     setPhone(obj) {
-        alert(JSON.stringify(obj));
+        console.log(obj);
+        console.log(JSON.stringify(obj));
         return this.dbPrimary.collection('telefonos').doc(obj.imei).set(obj)
             .then((docRef) => {
                 console.log('Document written');

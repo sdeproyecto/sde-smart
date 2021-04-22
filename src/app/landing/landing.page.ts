@@ -44,12 +44,6 @@ export class LandingPage implements OnInit {
     public util: UtilService) {
     this.menu.close();
     this.menu.swipeGesture(false);
-
-    const aux1 = JSON.parse(window.localStorage.getItem('validUser'));
-    if (aux1) {
-      this.navCtrl.navigateRoot('/home');
-      return;
-    }
   }
 
   private iniForm() {
@@ -62,30 +56,36 @@ export class LandingPage implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit LoginPage');
-    // this.getAllcustomers();
-    this.phoneData = {
-      imei: this.device.uuid,
-      modelo: this.device.model,
-      marca: this.device.manufacturer,
-      plataforma: this.device.platform,
-      version: this.device.version
-    };
-    this.customersService.searchPhone(this.phoneData.imei).then(val => {
-      console.log(' val', val);
-      if (val && val.length > 0) {
-        const aux = val[0];
-        console.log(JSON.stringify(aux));
-        if (aux.activo) {
-          this.navCtrl.navigateRoot('/login');
+    const aux1 = JSON.parse(window.localStorage.getItem('validUser'));
+    if (aux1) {
+      this.navCtrl.navigateRoot('/home/marcas');
+      return;
+    } else {
+      this.phoneData = {
+        imei: 'this.device.uuid',
+        modelo: 'this.device.model',
+        marca: 'this.device.manufacturer',
+        plataforma: 'this.device.platform',
+        version: 'this.device.version'
+      };
+      this.customersService.searchPhone(this.phoneData.imei).then(val => {
+        console.log(' val', val);
+        if (val && val.length > 0) {
+          const aux = val[0];
+          console.log(JSON.stringify(aux));
+          if (aux.activo) {
+            this.navCtrl.navigateRoot('/login');
+          } else {
+            this.navCtrl.navigateRoot('/waiting');
+          }
         } else {
-          this.navCtrl.navigateRoot('/waiting');
+          this.phoneData.activo = false;
+          this.iniForm();
         }
-      } else {
-        this.phoneData.activo = false;
-        this.iniForm();
-      }
-      this.load = true;
-    });
+        this.load = true;
+      });
+    }
+    // this.getAllcustomers();
   }
 
   getAllcustomers() {

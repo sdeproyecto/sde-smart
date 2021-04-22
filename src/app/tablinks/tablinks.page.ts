@@ -35,11 +35,10 @@ export class TablinksPage implements OnInit {
 
   openTab(tab, ev: MouseEvent) {
     if (ev) {
-      // this.util.setHelpMySpace(true);
       ev.stopImmediatePropagation();
       ev.preventDefault();
       console.log(ev);
-      // this.navCtrl.navigateRoot('home' + '/' + tab);
+      this.navCtrl.navigateRoot('home' + '/' + tab);
     }
   }
 

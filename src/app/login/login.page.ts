@@ -117,7 +117,7 @@ export class LoginPage implements OnInit {
           }
           this.isValid = true;
           window.localStorage.setItem('validUser', '1');
-          this.navCtrl.navigateRoot('/home');
+          this.navCtrl.navigateRoot('/home/marcas');
         } else {
           const toast = await this.toastCtrl.create({
             message: 'Usuario no permitido',

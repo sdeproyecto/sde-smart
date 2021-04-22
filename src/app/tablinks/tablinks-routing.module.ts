@@ -24,7 +24,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: '',
+        path: 'home',
         redirectTo: 'home/marcas',
         pathMatch: 'full'
     }

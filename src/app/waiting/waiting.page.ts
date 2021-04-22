@@ -1,4 +1,4 @@
-import { CustomersClientService } from './../services/fs-client/customers-client.service';
+import { CustomersService } from './../services/fs/customers.service';
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./waiting.page.scss'],
 })
 export class WaitingPage implements OnInit {
+  toggleTextInterval = null;
+  isValid: boolean;
 
   constructor(
-    public cusService: CustomersClientService,
+    public cusService: CustomersService,
     public navCtrl: NavController) { }
 
   ngOnInit() {
@@ -20,7 +22,30 @@ export class WaitingPage implements OnInit {
       this.cusService.setPhone(aux2);
       window.localStorage.setItem('setWaiting', '1');
     }
+    const aux3 = JSON.parse(window.localStorage.getItem('phoneData'));
+    if (aux3 && aux1.imei) {
+      clearInterval(this.toggleTextInterval);
+      this.toggleTextInterval = setInterval(() => {
+        if (!this.isValid) {
+          this.checkUser(aux3);
+        }
+      }, 5000);
+    }
+  }
 
+  checkUser(aux3) {
+    this.cusService.searchPhone(aux3.imei).then(val => {
+      console.log(' val', val);
+      if (val && val.length > 0) {
+        const aux = val[0];
+        console.log(JSON.stringify(aux));
+        if (aux.activo) {
+          this.isValid = true;
+          clearInterval(this.toggleTextInterval);
+          this.navCtrl.navigateRoot('/login');
+        }
+      }
+    });
   }
 
   gotoLogin() {

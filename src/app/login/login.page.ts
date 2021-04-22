@@ -92,42 +92,53 @@ export class LoginPage implements OnInit {
     // alert('this.token_id ' + this.token_id);
     const band = true;
     this.eneLoadingPic();
-    this.authService.signin(this.todo.value.username + '@gmail.com', this.todo.value.password).then((res) => {
-      console.log(res);
-      this.authService.searchUser(this.todo.value.username).then(async (val) => {
-        console.log(' val', val);
-        this.loadingPic.dismiss();
-        if (val && val.length > 0) {
-          const aux = val[0];
-          console.log(JSON.stringify(aux));
-          if (aux.tipo_usuario && aux.tipo_usuario.cod_tipo_usuario !== 'TIPO-APP') {
+    this.authService.signin(this.todo.value.username + '@gmail.com', this.todo.value.password).then(async (res) => {
+      console.log('res', res);
+      if (res) {
+        this.authService.searchUser(this.todo.value.username).then(async (val) => {
+          console.log(' val', val);
+          this.loadingPic.dismiss();
+          if (val && val.length > 0) {
+            const aux = val[0];
+            console.log(JSON.stringify(aux));
+            if (aux.tipo_usuario && aux.tipo_usuario.cod_tipo_usuario !== 'TIPO-APP') {
+              const toast = await this.toastCtrl.create({
+                message: 'Usuario no permitido',
+                duration: 4000,
+                color: 'danger'
+              });
+              toast.present();
+            } else {
+              const toast = await this.toastCtrl.create({
+                message: 'Bienvenido',
+                duration: 2000,
+                color: 'success'
+              });
+              toast.present();
+            }
+            this.isValid = true;
+            window.localStorage.setItem('validUser', '1');
+            this.navCtrl.navigateRoot('/home/marcas');
+          } else {
             const toast = await this.toastCtrl.create({
               message: 'Usuario no permitido',
               duration: 4000,
               color: 'danger'
             });
             toast.present();
-          }else {
-            const toast = await this.toastCtrl.create({
-              message: 'Bienvenido',
-              duration: 2000,
-              color: 'success'
-            });
-            toast.present();
           }
-          this.isValid = true;
-          window.localStorage.setItem('validUser', '1');
-          this.navCtrl.navigateRoot('/home/marcas');
-        } else {
-          const toast = await this.toastCtrl.create({
-            message: 'Usuario no permitido',
-            duration: 4000,
-            color: 'danger'
-          });
-          toast.present();
-        }
-      });
+        });
+      } else {
+        this.loadingPic.dismiss();
+        const toast = await this.toastCtrl.create({
+          message: 'Error, verifique usuario/contraseña',
+          duration: 4000,
+          color: 'danger'
+        });
+        toast.present();
+      }
     }).catch(async (err) => {
+      console.log('0 err LoginPage');
       this.loadingPic.dismiss();
       const toast = await this.toastCtrl.create({
         message: 'Error',

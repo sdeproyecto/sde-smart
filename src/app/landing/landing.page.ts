@@ -62,11 +62,11 @@ export class LandingPage implements OnInit {
       return;
     } else {
       this.phoneData = {
-        imei: 'this.device.uuid',
-        modelo: 'this.device.model',
-        marca: 'this.device.manufacturer',
-        plataforma: 'this.device.platform',
-        version: 'this.device.version'
+        imei: this.device.uuid,
+        modelo: this.device.model,
+        marca: this.device.manufacturer,
+        plataforma: this.device.platform,
+        version: this.device.version
       };
       this.customersService.searchPhone(this.phoneData.imei).then(val => {
         console.log(' val', val);

@@ -85,6 +85,7 @@ export class CustomersClientService {
         return this.secondaryApp.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 // Signed in
+                console.log('Signed in');
                 console.log(userCredential.user);
                 window.localStorage.setItem('saveUser', '1');
                 return userCredential;

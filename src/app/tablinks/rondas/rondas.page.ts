@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { CustomersClientService } from 'src/app/services/fs-client/customers-client.service';
 
 @Component({
   selector: 'app-rondas',
@@ -10,16 +9,13 @@ import { CustomersClientService } from 'src/app/services/fs-client/customers-cli
 export class RondasPage implements OnInit {
 
   constructor(
-    public navCtrl: NavController,
-    public customerService: CustomersClientService) { }
+    public navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
   logout() {
-    this.customerService.logOut().then(() => {
-      window.localStorage.removeItem('validUser');
-    });
+    window.localStorage.removeItem('validUser');
     this.navCtrl.navigateRoot('/login');
   }
 

@@ -151,7 +151,6 @@ export class LandingPage implements OnInit {
     this.customersService.setPhone(this.phoneData);
     window.localStorage.setItem('phoneData', JSON.stringify(this.phoneData));
     setTimeout(() => {
-      this.loadingPic.dismiss();
       this.navCtrl.navigateRoot('/waiting');
     }, 2000);
     console.log('0 LoginPage');
@@ -164,7 +163,7 @@ export class LandingPage implements OnInit {
   async eneLoadingPic() {
     this.loadingPic = await this.loadingCtrl.create({
       message: 'Espere',
-      // duration: 2000
+      duration: 2000
     });
     await this.loadingPic.present();
   }

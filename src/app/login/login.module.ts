@@ -17,7 +17,6 @@ console.log(firebaseAux);
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ServiceClientModule,
     FormsModule,
     IonicModule,
     LoginPageRoutingModule

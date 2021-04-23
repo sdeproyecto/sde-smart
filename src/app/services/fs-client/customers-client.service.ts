@@ -160,4 +160,21 @@ export class CustomersClientService {
                 console.error('Error adding document: ', error);
             });
     }
+
+    searchPhone(search) {
+        return this.dbSecondary.collection('telefonos').where('imei', '==', search)
+            .get()
+            .then((querySnapshot) => {
+                const aux = [];
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data());
+                    aux.push(doc.data());
+                });
+                // console.log(querySnapshot);
+                return aux;
+            })
+            .catch((error) => {
+                console.log('Error getting documents: ', error);
+            });
+    }
 }

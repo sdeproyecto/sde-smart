@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceClientModule } from './services/fs-client/fs-services.module';
 let firebaseAux = {
   apiKey: '',
   authDomain: '',
@@ -35,6 +36,7 @@ if (firebaseAux2) {
     HttpClientModule,
     IonicModule.forRoot(),
     ServiceModule,
+    ServiceClientModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerWhenStable' })
   ],

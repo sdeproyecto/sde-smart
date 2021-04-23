@@ -13,7 +13,6 @@ import { ServiceModule } from '../services/fs/fs-services.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ServiceModule,
     FormsModule,
     IonicModule,
     LandingPageRoutingModule

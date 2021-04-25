@@ -98,6 +98,25 @@ export class CustomersService {
             });
     }
 
+    getLogo() {
+        const storage = this.primaryApp.storage();
+
+        // Create a storage reference from our storage service
+        const storageRef = storage.ref();
+        const spaceRef = storageRef.child('app/logo.jpg');
+        console.log('spaceRef');
+
+        // Get the download URL
+        return spaceRef.getDownloadURL().then((url) => {
+            console.log('img');
+            console.log(url);
+            return url;
+            // Insert url into an <img> tag to "download"
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
+
     searchPhone(search) {
         return this.dbPrimary.collection('telefonos').where('imei', '==', search)
             .get()

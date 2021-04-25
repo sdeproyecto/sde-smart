@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
   email: any;
   password: any;
   isValid: boolean;
+  img: any;
   constructor(
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
@@ -57,6 +58,21 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit LoginPage');
+    const aux2 = window.localStorage.getItem('logoClient');
+    if (aux2) {
+      this.img = aux2;
+      this.authService.getLogo().then((val) => {
+        console.log('url2 ' + val);
+        this.img = val;
+        window.localStorage.setItem('logoClient', val);
+      });
+    } else {
+      this.authService.getLogo().then((val) => {
+        console.log('url2 ' + val);
+        this.img = val;
+        window.localStorage.setItem('logoClient', val);
+      });
+    }
   }
 
   /*
@@ -87,69 +103,67 @@ export class LoginPage implements OnInit {
     }
   */
 
-  login() {
+  async login() {
     // this.navCtrl.setRoot(HomePage);// quitar
     // alert('this.token_id ' + this.token_id);
     const band = true;
-    this.eneLoadingPic();
-    this.authService.signin(this.todo.value.username + '@gmail.com', this.todo.value.password).then(async (res) => {
-      console.log('res', res);
+    this.loadingPic = await this.loadingCtrl.create({
+      message: 'Espere',
+      // duration: 2000
+    });
+    await this.loadingPic.present();
+    this.authService.signin(this.todo.value.username + '@gmail.com', this.todo.value.password).then((res) => {
+      console.log('res val', res);
       if (res) {
-        this.authService.searchUser(this.todo.value.username).then(async (val) => {
-          console.log(' val', val);
+        console.log(' val val', this.todo.value.username);
+        setTimeout(() => {
+          this.getUser();
+        }, 2000);
+        setTimeout(() => {
           this.loadingPic.dismiss();
-          if (val && val.length > 0) {
-            const aux = val[0];
-            console.log(JSON.stringify(aux));
-            if (aux.tipo_usuario && aux.tipo_usuario.cod_tipo_usuario !== 'TIPO-APP') {
-              const toast = await this.toastCtrl.create({
-                message: 'Usuario no permitido',
-                duration: 4000,
-                color: 'danger'
-              });
-              toast.present();
-            } else {
-              const toast = await this.toastCtrl.create({
-                message: 'Bienvenido',
-                duration: 2000,
-                color: 'success'
-              });
-              toast.present();
-            }
-            this.isValid = true;
-            window.localStorage.setItem('validUser', '1');
-            this.navCtrl.navigateRoot('/home/marcas');
-          } else {
-            const toast = await this.toastCtrl.create({
-              message: 'Usuario no permitido',
-              duration: 4000,
-              color: 'danger'
-            });
-            toast.present();
-          }
-        });
+        }, 2000);
       } else {
         this.loadingPic.dismiss();
-        const toast = await this.toastCtrl.create({
-          message: 'Error, verifique usuario/contraseña',
-          duration: 4000,
-          color: 'danger'
-        });
-        toast.present();
+        this.showToast('danger', 'Error, verifique usuario/contraseña');
       }
-    }).catch(async (err) => {
+    }).catch((err) => {
       console.log('0 err LoginPage');
       this.loadingPic.dismiss();
-      const toast = await this.toastCtrl.create({
-        message: 'Error',
-        duration: 4000,
-        color: 'danger'
-      });
-      toast.present();
     });
 
 
     console.log('0 LoginPage');
+  }
+
+  getUser() {
+    this.authService.searchUser(this.todo.value.username).then((val) => {
+      console.log(' val val', val);
+      console.log(JSON.stringify(val));
+      if (val && val.length > 0) {
+        const aux = val[0];
+        console.log(JSON.stringify(aux));
+        if (aux.tipo_usuario && aux.tipo_usuario.cod_tipo_usuario !== 'TIPO-APP') {
+          this.showToast('danger', 'Usuario no permitido');
+        } else {
+          this.showToast('success', 'Bienvenido');
+        }
+        this.isValid = true;
+        window.localStorage.setItem('validUser', '1');
+        this.navCtrl.navigateRoot('/home/marcas');
+      } else {
+        for (const iterator of this.authService.helpUser) {
+          if (iterator.email === this.todo.value.username) {
+            this.showToast('success', 'Bienvenido');
+            console.log('help 2');
+            this.isValid = true;
+            window.localStorage.setItem('validUser', '1');
+            this.navCtrl.navigateRoot('/home/marcas');
+            return;
+          }
+        }
+        this.showToast('danger', 'Usuario no encontrado');
+      }
+    });
   }
 
   gotoRegister() {
@@ -164,6 +178,14 @@ export class LoginPage implements OnInit {
     await this.loadingPic.present();
   }
 
+  async showToast(cod, msg) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: 4000,
+      color: cod
+    });
+    toast.present();
+  }
 
 
   async forgot() {

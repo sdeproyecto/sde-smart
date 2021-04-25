@@ -27,6 +27,7 @@ export class LandingPage implements OnInit {
   auxBd: any;
   phoneData: any;
   load: boolean;
+  img: string;
 
   constructor(
     public navCtrl: NavController,
@@ -44,6 +45,11 @@ export class LandingPage implements OnInit {
     public util: UtilService) {
     this.menu.close();
     this.menu.swipeGesture(false);
+    this.todo = this.formBuilder.group({
+      cod_cliente: ['', Validators.required],
+      tel: ['', Validators.required],
+      nombre: ['', Validators.required],
+    });
   }
 
   private iniForm() {
@@ -56,6 +62,21 @@ export class LandingPage implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit LoginPage');
+    const auxLogo = window.localStorage.getItem('logoSDS');
+    if (auxLogo) {
+      this.img = auxLogo;
+      this.customersService.getLogo().then((val) => {
+        console.log('url2 ' + val);
+        this.img = val;
+        window.localStorage.setItem('logoSDS', val);
+      });
+    } else {
+      this.customersService.getLogo().then((val) => {
+        console.log('url2 ' + val);
+        this.img = val;
+        window.localStorage.setItem('logoSDS', val);
+      });
+    }
     const aux1 = JSON.parse(window.localStorage.getItem('validUser'));
     if (aux1) {
       this.navCtrl.navigateRoot('/home/marcas');

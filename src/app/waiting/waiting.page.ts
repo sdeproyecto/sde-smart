@@ -10,12 +10,14 @@ import { CustomersClientService } from '../services/fs-client/customers-client.s
 export class WaitingPage implements OnInit {
   toggleTextInterval = null;
   isValid: boolean;
+  img: string;
 
   constructor(
     public cusService: CustomersClientService,
     public navCtrl: NavController) { }
 
   ngOnInit() {
+    console.log('ngOnInit waiteingl');
     const aux1 = JSON.parse(window.localStorage.getItem('setWaiting'));
     if (!aux1) {
       const aux2 = JSON.parse(window.localStorage.getItem('phoneData'));
@@ -30,6 +32,22 @@ export class WaitingPage implements OnInit {
           this.checkUser(aux3);
         }
       }, 5000);
+    }
+
+    const auxLogo = window.localStorage.getItem('logoClient');
+    if (auxLogo) {
+      this.img = auxLogo;
+      this.cusService.getLogo().then((val) => {
+        console.log('url2 ' + val);
+        this.img = val;
+        window.localStorage.setItem('logoClient', val);
+      });
+    } else {
+      this.cusService.getLogo().then((val) => {
+        console.log('url2 ' + val);
+        this.img = val;
+        window.localStorage.setItem('logoClient', val);
+      });
     }
   }
 

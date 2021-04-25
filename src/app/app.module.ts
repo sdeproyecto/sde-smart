@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { Device } from '@ionic-native/device/ngx';
@@ -15,6 +15,7 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceClientModule } from './services/fs-client/fs-services.module';
+import { AppInitService } from './app-init-service';
 let firebaseAux = {
   apiKey: '',
   authDomain: '',
@@ -27,6 +28,12 @@ let firebaseAux = {
 const firebaseAux2 = JSON.parse(window.localStorage.getItem('fbKey'));
 if (firebaseAux2) {
   firebaseAux = firebaseAux2;
+}
+
+export function initializeApp1(appInitService: AppInitService) {
+  return (): Promise<any> => {
+    return appInitService.Init();
+  };
 }
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +48,8 @@ if (firebaseAux2) {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerWhenStable' })
   ],
   providers: [
+    AppInitService,
+    { provide: APP_INITIALIZER, useFactory: initializeApp1, deps: [AppInitService], multi: true },
     Device,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

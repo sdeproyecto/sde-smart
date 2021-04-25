@@ -27,10 +27,10 @@ export class AuthService {
   }
 
   signup(email: string, password: string) {
-    const firebaseAux = JSON.parse(window.localStorage.getItem('fbKey'));
+    /*const firebaseAux = JSON.parse(window.localStorage.getItem('fbKey'));
     console.log(firebaseAux);
     firebase.initializeApp(firebaseAux);
-    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
+    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);*/
   }
 
   login(email: string, password: string) {

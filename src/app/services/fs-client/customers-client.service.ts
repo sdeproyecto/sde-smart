@@ -34,13 +34,20 @@ export class CustomersClientService {
     _showData = this.showLoading.asObservable();
     secondaryApp: any;
     dbSecondary: any;
+    firebaseAux: any;
+    setflag: boolean;
+    helpUser: any[];
 
     constructor() {
         const firebaseAux = JSON.parse(window.localStorage.getItem('fbKey'));
-        console.log(firebaseAux);
-        this.secondaryApp = firebase.initializeApp(firebaseAux, 'sds-cliente');
-        this.dbSecondary = this.secondaryApp.firestore();
+        console.log('firebaseAux2');
+        if (firebaseAux) {
+            this.secondaryApp = firebase.initializeApp(firebaseAux, 'sds-cliente');
+            this.dbSecondary = this.secondaryApp.firestore();
+        }
+
     }
+
 
     setDataHelp(data) {
         this.dataCustomer = data;
@@ -97,7 +104,7 @@ export class CustomersClientService {
             });
     }
 
-    logOut(){
+    logOut() {
         return this.secondaryApp.auth().logout().then((dat) => {
             console.log(dat);
             return 'dat';
@@ -142,7 +149,7 @@ export class CustomersClientService {
                     console.log(doc.data());
                     aux.push(doc.data());
                 });
-                // console.log(querySnapshot);
+                console.log('aux getting ');
                 return aux;
             })
             .catch((error) => {
@@ -176,5 +183,42 @@ export class CustomersClientService {
             .catch((error) => {
                 console.log('Error getting documents: ', error);
             });
+    }
+
+    getLogo() {
+        const storage = this.secondaryApp.storage();
+
+        // Create a storage reference from our storage service
+        const storageRef = storage.ref();
+        const spaceRef = storageRef.child('app/logo.jpg');
+        console.log('spaceRef');
+
+        // Get the download URL
+        return spaceRef.getDownloadURL().then((url) => {
+            console.log('img');
+            console.log(url);
+            return url;
+            // Insert url into an <img> tag to "download"
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
+
+    getAlluserHelp() {
+        return this.dbSecondary.collection('usuarios').get().then((querySnapshot) => {
+            const aux = [];
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+                aux.push(doc.data());
+            });
+            console.log('getAllCustomersH');
+            console.log(JSON.stringify(aux));
+            if (aux) {
+                this.helpUser = aux;
+            }
+            return aux;
+        }).catch((err) => {
+            console.error(JSON.stringify(err));
+        });
     }
 }

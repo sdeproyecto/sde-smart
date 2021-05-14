@@ -16,6 +16,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceClientModule } from './services/fs-client/fs-services.module';
 import { AppInitService } from './app-init-service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 let firebaseAux = {
   apiKey: '',
   authDomain: '',
@@ -49,6 +50,7 @@ export function initializeApp1(appInitService: AppInitService) {
   ],
   providers: [
     AppInitService,
+    StatusBar,
     { provide: APP_INITIALIZER, useFactory: initializeApp1, deps: [AppInitService], multi: true },
     Device,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

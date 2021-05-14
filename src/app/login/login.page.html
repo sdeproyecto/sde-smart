@@ -2,58 +2,55 @@
   <div class="login-content bg">
 
     <!-- Logo -->
-    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+    <div class="ion-text-center animated fadeInDown" style="height: 80%;">
       <div class="logo">
-        <img *ngIf="img" [src]="img">
-      </div>
-      <ion-text color="primary">
-        <h2 class="ion-padding-top ion-text-center ion-no-margin">
-          Iniciar Sesión
-        </h2>
-      </ion-text>
-    </div>
 
-    <!-- Login form -->
-    <form [formGroup]="todo" (ngSubmit)="login()">
-      <div class="ion-padding-horizontal">
-        <ion-input placeholder="Usuario" class="inputLigth ion-margin-bottom" type="text" 
-          formControlName="username" required></ion-input>
-        <ion-input placeholder="Contraseña" class="inputLigth ion-margin-top" clearOnEdit="false"
-          type="password" formControlName="password" required></ion-input>
       </div>
 
-      <!--</form> -->
+      <div class="divContent">
+        <div class="help1">
+          <ion-text color="tertiary">
+            <h2 class="ion-text-center ion-no-margin titleHelp">
+              Iniciar Sesión
+            </h2>
+          </ion-text>
+        </div>
+        <div>
+          <!-- Login form -->
+          <form [formGroup]="todo" (ngSubmit)="login()">
+            <div class="ion-padding-horizontal labelHelp">
+              <p>Código de Funcionario</p>
+              <ion-input class="inputLigth ion-margin-bottom" type="text" formControlName="username" required>
+              </ion-input>
+              <p>Clave</p>
+              <ion-input class="inputLigth ion-margin-top" clearOnEdit="false" type="password"
+                formControlName="password" required></ion-input>
+            </div>
+
+            <!--</form> -->
 
 
-      <div class="ion-text-center ion-padding buttonDiv">
-        <ion-button shape="round" color="primary" type="submit" class="bLogin" [disabled]="!todo.valid" expand="block">
-          <p class="buttonL">Iniciar Sesión</p>
-        </ion-button>
+            <div class="ion-text-center ion-padding buttonDiv">
+              <ion-button color="primary" type="submit" [disabled]="!todo.valid" expand="block">
+                <span style="font-size: 24px;">INGRESAR</span>
+              </ion-button>
+            </div>
+
+          </form>
+        </div>
       </div>
-      <div class="ion-text-center" (click)="forgot()">
-        <ion-text color="medium">
-          <p><span class="pass">¿Olvido su contraseña?</span></p>
-        </ion-text>
+      <div class="divContentHelp">
+
       </div>
 
-    </form>
-    <div>
-      <div class="ion-text-center" (click)="gotoRegister()">
-        <ion-text color="medium">
-          <p><span class="pass">Aún no tienes Registrado? </span> <span class="labelRegister">REGISTRATE</span></p>
-        </ion-text>
-      </div>
-      <div class="ion-text-center">
-        <ion-text color="primary">
-          <p style="font-size: 12px;">
-            <a target="_blank" rel="noopener noreferrer" href="https://google.com">
-              <ion-text color="primary">
-                <b>Política de privacidad</b>
-              </ion-text>
-            </a>
-            de SDS
-          </p>
-        </ion-text>
+
+      <div class="textCR-load">
+        <div class="ion-text-center" (click)="forgot()">
+          <ion-text color="light">
+            <p><span class="pass">Olvido la Clave? Solicite una nueva. </span></p>
+          </ion-text>
+        </div>
+        <p>Copyright Software 2021</p>
       </div>
     </div>
   </div>

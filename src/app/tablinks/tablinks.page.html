@@ -1,29 +1,40 @@
 <ion-tabs #myTabs mode='ios' (ionTabsDidChange)="getTab($event)">
 
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" class="divTabs">
+    <ion-tab-button  class="divHome" tab="home" (click)="openTab('dashboard', $event)">
+      <div class="divTab" [ngClass]="{'tabAct': nameTab == 'dashboard'}">
+        <ion-icon [color]="nameTab == 'dashboard' ? 'secondary':'light'" name="home-outline">
+        </ion-icon>
+      </div>
+    </ion-tab-button>
     <ion-tab-button  class="divHome" tab="marcas" (click)="openTab('marcas', $event)">
       <div class="divTab" [ngClass]="{'tabAct': nameTab == 'marcas'}">
-        <ion-icon [color]="nameTab == 'marcas' ? 'bwhite':'dark'" name="checkmark-done">
+        <ion-icon [color]="nameTab == 'marcas' ? 'secondary':'light'" name="stats-chart-outline">
         </ion-icon>
-        <ion-label>Marcas</ion-label>
+      </div>
+    </ion-tab-button>
+    <div class="tabHelpCenter">
+
+    </div>
+    <ion-tab-button class="divHome" tab="rondas" (click)="openTab('rondas', $event)">
+      <div class="divTab" [ngClass]="{'tabAct': nameTab == 'rondas'}">
+        <ion-icon [color]="nameTab == 'rondas' ? 'secondary':'light'" name="notifications-outline">
+        </ion-icon>
       </div>
     </ion-tab-button>
 
-    <ion-tab-button class="divHome" tab="rondas" (click)="openTab('rondas', $event)">
-      <div class="divTab" [ngClass]="{'tabAct': nameTab == 'rondas'}">
-        <ion-icon [color]="nameTab == 'rondas' ? 'bwhite':'dark'" name="git-compare">
-        </ion-icon>
-        <ion-label>Rondas</ion-label>
-      </div>
-    </ion-tab-button>
     <ion-tab-button class="divProfile"  tab="empleado" (click)="openTab('empleado', $event)">
       <div class="divTab" [ngClass]="{'tabAct': nameTab == 'empleado'}">
-        <ion-icon  [color]="nameTab == 'empleado' ? 'bwhite':'dark'" name="person">
+        <ion-icon  [color]="nameTab == 'empleado' ? 'secondary':'light'" name="person">
         </ion-icon>
-        <ion-label>Empleado</ion-label>
       </div>
     </ion-tab-button>
 
   </ion-tab-bar>
 
 </ion-tabs>
+<ion-fab  vertical="bottom" horizontal="center" slot="fixed" style="bottom: 38px;">
+  <ion-fab-button mode="md" (click)="openWhats()">
+    <ion-icon name="scan-outline" color="light"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -106,7 +106,6 @@ export class LandingPage implements OnInit {
         this.load = true;
       });
     }
-    // this.getAllcustomers();
   }
 
   getAllcustomers() {

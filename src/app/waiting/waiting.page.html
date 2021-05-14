@@ -2,32 +2,36 @@
   <div class="login-content bg">
 
     <!-- Logo -->
-    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+    <div class="ion-text-center animated fadeInDown" style="height: 80%;">
       <div class="logo">
-        <img *ngIf="img" [src]="img">
+
       </div>
-      <ion-text color="primary">
-        <h2 class="ion-padding-bottom ion-text-center ion-no-margin">
-          Estas en proceso de Validación <br>
-        </h2>
-        <ion-badge color="medium">
-          esperando activación
-        </ion-badge>
-      </ion-text>
+      <div class="divContent">
+        <div class="help1">
+          <ion-text color="tertiary">
+            <h2 class="ion-text-center ion-no-margin titleHelp">
+              SU EQUIPO SE ENCUENTRA
+            </h2>
+            <br>
+            <h2 class="ion-text-center ion-no-margin titleHelp">
+              EN PROCESO DE ACTIVACION
+            </h2>
+          </ion-text>
+        </div>
+      </div>
+      <div class="divContentHelp">
+
+      </div>
+
+      <div class="textCR">
+        Copyright Software 2021
+      </div>
     </div>
 
     <div class="divWait">
       <ion-spinner color="primary">
 
       </ion-spinner>
-    </div>
-
-    <div>
-      <div class="ion-text-center">
-        <ion-text color="medium">
-          <p><span class="pass">Ya tienes cuenta? </span> <span class="labelRegister">Entrar</span></p>
-        </ion-text>
-      </div>
     </div>
   </div>
 </ion-content>

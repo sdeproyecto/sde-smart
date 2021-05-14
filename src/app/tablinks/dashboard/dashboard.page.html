@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button class="topBut" color="light" fill="outline" icon-only>
+        <ion-icon color="light" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Nombre Guardia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="topBut" color="light" fill="outline" icon-only>
+        <ion-icon color="light" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-padding-horizontal">
+    <div class="home1-top">
+      <div class="aux1">
+        <img src="assets/imgs/pin_map.svg" />
+      </div>
+      <div class="aux2">
+        Servicio 1 - 10 a 18 hs
+      </div>
+    </div>
+    <div class="home2-top">
+      <div class="aux1">
+        <ion-icon color="light"  src="assets/imgs/ICON_INGRESO.svg"></ion-icon>
+        <p>INGRESO</p>
+      </div>
+      <div class="aux2">
+        <ion-icon color="light" src="assets/imgs/ICON_EGRESO.svg"></ion-icon>
+        <p>EGRESO</p>
+      </div>
+    </div>
+    <div class="home2-top">
+      <div class="aux1 ex">
+        <ion-icon color="light" name="pause-outline"></ion-icon>
+        <p>PAUSA</p>
+      </div>
+      <div class="aux2 ex">
+        <ion-icon color="light" name="play"></ion-icon>
+        <p>REGRESO</p>
+      </div>
+    </div>
+    <div class="home3-top ion-margin-bottom">
+      <div class="aux1t">
+        <div class="aux1">
+          <ion-icon color="secondary"  src="assets/imgs/ICON_INGRESO.svg"></ion-icon>
+        </div>
+        <p>3:00</p>
+      </div>
+      <div class="aux2t">
+        <div class="aux2">
+          <ion-icon color="secondary" name="pause"></ion-icon>
+        </div>
+        <p>2:08</p>
+      </div>
+      <div class="aux3t">
+        <div class="aux3">
+          <ion-icon color="secondary" name="play"></ion-icon>
+        </div>
+        <p>1:15</p>
+      </div>
+      <div class="aux4t">
+        <div class="aux4">
+          <ion-icon color="secondary" src="assets/imgs/ICON_EGRESO.svg"></ion-icon>
+        </div>
+        <p>3:22</p>
+      </div>
+    </div>
+
+    <div class="ion-margin-vertical">
+      <div class="globalButton-1  ion-margin-top" (click)="gotoDetail()">
+        <div class="left">
+          <ion-icon color="secondary" name="hand-right"></ion-icon>
+        </div>
+        <div class="mid">
+          BOTON 1
+        </div>
+      </div>
+      <div class="globalButton-2 ion-margin-vertical" (click)="gotoDetail()">
+        <div class="left">
+          <ion-icon color="secondary" src="assets/imgs/ico_detalle.svg"></ion-icon>
+        </div>
+        <div class="mid">
+          BOTON 2
+        </div>
+        <div class="right">
+          <ion-icon color="light" name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</ion-content>

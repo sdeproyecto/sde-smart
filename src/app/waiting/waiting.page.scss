@@ -1,16 +1,68 @@
 .logo {
-    width: 100px;
+    width: 80%;
     margin: auto;
-    margin-top: 36px;
-    margin-bottom: 20px;
+    //margin-bottom: 20px;
     border-radius: 10%;
-    // background: url("../../assets/imgs/shapes.png") no-repeat;
     background-position: center;
     background-size: 100%;
+    height: 20%;
+    margin-top: 25px;
+    background: url("../../assets/imgs/logoApp.svg") no-repeat;
 }
+.help1 {
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
+.divContent {
+    height: 80%;
+    border-top-left-radius: 60px;
+    background-color: white;
+    position: relative;
+}
+
+.divContentHelpx:after {
+    content: "";
+    position: absolute;
+    right: 22px;
+    bottom: -32px;
+    z-index: 20;
+    width: 0;
+    height: 0;
+    border: 27px solid transparent;
+    border-right-color: rgb(184, 48, 48);
+    border-left: 0;
+    border-top: 0;
+    margin-top: -13.5px;
+    margin-right: -27px;
+}
+
+.divContentHelp {
+    width: 55px;
+    height: 55px;
+    background: #ffffff;
+    background: radial-gradient(circle 140px at -40% 50%, transparent, transparent 100px, #ffffff 100px),
+        radial-gradient(circle 150px at 80% 50%, transparent, transparent 100px, #ffffff 100px);
+    background-size: 66px 228px, 78px 178px;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -9px;
+    margin-top: -17px;
+}
+
 .login-content {
-    height: 100%;
-    display: grid;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+    background-image: url("../../assets/imgs/bgPrimary.png") !important;
 }
 
 ion-input {
@@ -48,8 +100,19 @@ ion-input {
 
 .divWait {
     text-align: center;
+    position: relative;
+    top: -112px;
     ion-spinner {
-        width: 100px;
-        height: 100px;
+        width: 30px;
+        height: 30px;
     }
+}
+
+.textCR {
+    color: white;
+    position: absolute;
+    bottom: 20px;
+    font-size: 13px;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
 }

@@ -1,96 +1,97 @@
-<ion-content class="animated fadeIn login auth-page ion-padding bg">
+<ion-content class="animated fadeIn login auth-page bg">
   <div class="login-content bg">
 
     <!-- Logo -->
-    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+    <div class="ion-text-center animated fadeInDown" style="height: 80%;">
       <div class="logo">
-        <img *ngIf="img" [src]="img">
+
       </div>
-      <ion-text color="primary">
-        <h2 class="ion-text-center ion-no-margin">
-          Bienvenido
-        </h2>
-      </ion-text>
-      <ion-text color="medium">
-        <p class="subtext ion-padding-bottom ion-text-center ion-no-margin">
-          Necesitamos algunos datos para continuar
-        </p>
-      </ion-text>
+      <div class="divContent">
+        <img *ngIf="!load" src="assets/imgs/logoInit.svg" />
+        <ion-text *ngIf="!load" color="tertiary">
+          <h2 class="ion-text-center ion-no-margin titleHelp">
+            BIENVENIDO
+          </h2>
+          <br>
+          <h2 class="ion-text-center ion-no-margin titleHelp">
+            POR FAVOR AGUARDE
+          </h2>
+        </ion-text>
+        <div *ngIf="load" class="ion-padding-top">
+          <ion-text color="tertiary">
+            <h2 class="ion-text-center ion-no-margin subtitleHelp">
+              Solicitar Activación Equipo
+            </h2>
+          </ion-text>
+          <form [formGroup]="todo" (ngSubmit)="reg()">
+            <div class="ion-padding-horizontal labelHelp">
+              <p>Nombre Equipo</p>
+              <ion-input class="inputLigth" type="text" formControlName="nombre" required></ion-input>
+              <p class="ion-padding-top">Número del celular</p>
+              <ion-input class="inputLigth" type="tel" formControlName="tel" required></ion-input>
+              <div style="position: relative;">
+                <p class="ion-padding-top">COD Cliente</p>
+                <ion-input (ionInput)="checkCod()" class="inputLigth" type="text" formControlName="cod_cliente"
+                  required></ion-input>
+                <div *ngIf="isSearching" class="is-Search">
+                  <ion-spinner color="primary">
+
+                  </ion-spinner>
+                </div>
+                <div *ngIf="todo.value.cod_cliente && !isSearching">
+                  <div class="validation-errors">
+                    <ng-container>
+                      <div class="error-message" *ngIf="!codValid">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        COD Cliente invalido
+                      </div>
+                      <div class="success-message" *ngIf="codValid">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        COD Cliente valido
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <!-- <ion-select placeholder="Contraseña" class="selectLight" formControlName="customer" style="opacity: 1 !important;"
+              [ngClass]="{'extraTs': !todo.value.customer}" required>
+              <ion-select-option [value]="item.cod_cliente" *ngFor="let item of customers" text-capitalize>
+                {{item.nombre}}
+              </ion-select-option>
+            </ion-select> -->
+            </div>
+            <!--</form> -->
+            <div class="ion-text-center ion-margin-bottom buttonDiv ion-padding-horizontal">
+              <ion-button style="z-index: 20;" color="primary" type="submit" [disabled]="!todo.valid" expand="block">
+                <span style="font-size: 24px;">ACTIVAR</span>
+              </ion-button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="divContentHelp">
+
+      </div>
+
+      <div *ngIf="!load" class="textCR">
+        Copyright Software 2021
+      </div>
+      <div *ngIf="load" class="textCR-load">
+        <div class="ion-text-center" (click)="gotoLogin()">
+          <ion-text color="light">
+            <p><span class="pass">Nuevo Cliente? Solicite una Demo </span></p>
+          </ion-text>
+        </div>
+        <p>Copyright Software 2021</p>
+      </div>
     </div>
 
     <!-- reg form -->
-    <div *ngIf="load">
-      <form [formGroup]="todo" (ngSubmit)="reg()">
-        <div class="ion-padding-horizontal">
-          <ion-input placeholder="Número del celular " class="inputLigth ion-margin-bottom" type="tel" formControlName="tel"
-            required></ion-input>
-          <ion-input placeholder="Nombre del celular" class="inputLigth ion-margin-top"  type="text"
-            formControlName="nombre" required></ion-input>
-          <div style="position: relative;">
-            <ion-input (ionInput)="checkCod()" placeholder="COD Cliente" class="inputLigth ion-margin-top" type="text"
-              formControlName="cod_cliente" required></ion-input>
-            <div *ngIf="isSearching" class="is-Search">
-              <ion-spinner color="primary">
 
-              </ion-spinner>
-            </div>
-            <div *ngIf="todo.value.cod_cliente && !isSearching">
-              <div class="validation-errors">
-                <ng-container>
-                  <div class="error-message" *ngIf="!codValid">
-                    <ion-icon name="information-circle-outline"></ion-icon>
-                    COD Cliente invalido
-                  </div>
-                  <div class="success-message" *ngIf="codValid">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    COD Cliente valido
-                  </div>
-                </ng-container>
-              </div>
-            </div>
-          </div>
-          <!-- <ion-select placeholder="Contraseña" class="selectLight" formControlName="customer" style="opacity: 1 !important;"
-          [ngClass]="{'extraTs': !todo.value.customer}" required>
-          <ion-select-option [value]="item.cod_cliente" *ngFor="let item of customers" text-capitalize>
-            {{item.nombre}}
-          </ion-select-option>
-        </ion-select> -->
-        </div>
-
-        <!--</form> -->
-
-
-        <div class="ion-text-center ion-padding buttonDiv">
-          <ion-button shape="round" color="primary" type="submit" class="bLogin" [disabled]="!todo.valid"
-            expand="block">
-            <p class="buttonL">Registrar</p>
-          </ion-button>
-        </div>
-      </form>
-      <div>
-        <div class="ion-text-center" (click)="gotoLogin()">
-          <ion-text color="medium">
-            <p><span class="pass">Ya tienes cuenta? </span> <span class="labelRegister">Iniciar sesión</span></p>
-          </ion-text>
-        </div>
-        <div class="ion-text-center">
-          <ion-text color="primary">
-            <p style="font-size: 12px;">
-              <a target="_blank" rel="noopener noreferrer" href="https://google.com">
-                <ion-text color="primary">
-                  <b>Política de privacidad</b>
-                </ion-text>
-              </a>
-              de SDS
-            </p>
-          </ion-text>
-        </div>
-      </div>
-    </div>
     <div *ngIf="!load">
       <div class="divWait">
         <ion-spinner color="primary">
-  
+
         </ion-spinner>
       </div>
     </div>

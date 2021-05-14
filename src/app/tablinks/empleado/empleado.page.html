@@ -1,14 +1,81 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Empleado SDS</ion-title>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title class="ion-text-center">TITULO 4</ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" icon-only (click)="logout($event)">
-        <ion-icon color="light" name="log-out"></ion-icon>
+        <ion-icon color="light" src="assets/imgs/ICON_EGRESO.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <div>
+    <div class="div-top ion-padding-horizontal">
+      <div class="aux1">
+        <ion-icon color="primary" name="person-outline"> </ion-icon>
+      </div>
+      <div class="aux2">
+        Guardia Prueba
+      </div>
+    </div>
+    <div class="div-content ion-margin-top">
+      <ion-item lines="full">
+        <ion-button slot="start" fill="clear">
+          <ion-icon slot="icon-only" name="person" color="primary"></ion-icon>
+        </ion-button>
+        <ion-label>BOTON 1</ion-label>
+        <ion-button slot="end" fill="clear">
+          <ion-icon slot="icon-only" color="secondary" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-button slot="start" fill="clear">
+          <ion-icon slot="icon-only" name="bag" color="primary"></ion-icon>
+        </ion-button>
+        <ion-label>BOTON 2</ion-label>
+        <ion-button slot="end" fill="clear">
+          <ion-icon slot="icon-only" color="secondary" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-button slot="start" fill="clear">
+          <ion-icon slot="icon-only" name="gift" color="primary"></ion-icon>
+        </ion-button>
+        <ion-label>BOTON 3</ion-label>
+        <ion-button slot="end" fill="clear">
+          <ion-icon slot="icon-only" color="secondary" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-button slot="start" fill="clear">
+          <ion-icon slot="icon-only" name="help-circle" color="primary"></ion-icon>
+        </ion-button>
+        <ion-label>BOTON 4</ion-label>
+        <ion-button slot="end" fill="clear">
+          <ion-icon slot="icon-only" color="secondary" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-button slot="start" fill="clear">
+          <ion-icon slot="icon-only" src="assets/imgs/ICON_INGRESO.svg" color="primary"></ion-icon>
+        </ion-button>
+        <ion-label>BOTON 5</ion-label>
+        <ion-button slot="end" fill="clear">
+          <ion-icon slot="icon-only" color="secondary" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-button slot="start" fill="clear">
+          <ion-icon slot="icon-only" src="assets/imgs/ICON_EGRESO.svg" color="primary"></ion-icon>
+        </ion-button>
+        <ion-label>BOTON 6</ion-label>
+        <ion-button slot="end" fill="clear">
+          <ion-icon slot="icon-only" color="secondary" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

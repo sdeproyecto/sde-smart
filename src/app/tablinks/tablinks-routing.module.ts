@@ -20,6 +20,18 @@ const routes: Routes = [
             {
                 path: 'empleado',
                 loadChildren: () => import('./empleado/empleado.module').then(m => m.EmpleadoPageModule)
+            },
+            {
+                path: 'dashboard',
+                loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+            },
+            {
+                path: 'dashboard/detail',
+                loadChildren: () => import('./dashboard-detail/dashboard-detail.module').then( m => m.DashboardDetailPageModule)
+            },
+            {
+                path: 'dashboard/option',
+                loadChildren: () => import('./dashboard-option/dashboard-option.module').then( m => m.DashboardOptionPageModule)
             }
         ]
     },

@@ -101,8 +101,10 @@ export class LandingPage implements OnInit {
         image: 'assets/imgs/tour3.svg'
       }
     ];
+    console.log(this.phoneData.imei, 'this.phoneData.imei');
     this.customersService.searchPhone(this.phoneData.imei).then(val => {
-      console.log(' val', val);
+      console.log(' searchPhone', val);
+      console.log(JSON.stringify(val));
       if (val && val.length > 0) {
         const aux = val[0];
         console.log(JSON.stringify(aux));
@@ -243,7 +245,7 @@ export class LandingPage implements OnInit {
     }
   }
 
-  regGmail(){
+  regGoogle() {
     if (this.platform.is('capacitor') || this.platform.is('cordova')) {
       this.googlePlus.login({
         webClientId: '356324128218-uikft863lvie0c64p1q2eb0u0lutbmbu.apps.googleusercontent.com',

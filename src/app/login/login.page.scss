@@ -1,51 +1,56 @@
 .logo {
-    width: 80%;
-    margin: auto;
-    //margin-bottom: 20px;
+    margin: 16px;
     border-radius: 10%;
     background-position: center;
     background-size: 100%;
-    height: 20%;
-    margin-top: 25px;
+    height: 125px;
+    background-size: contain;
     background: url("../../assets/imgs/logoApp.svg") no-repeat;
+    //margin-bottom: 48px;
+
+}
+:host {
+    ion-input {
+        --color: #455677;
+        --border-color: var(--ion-color-primary); // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: var(--ion-color-secondary);; // valid underline color
+    }
+
+    ion-item {
+        .item-inner {
+            border-color: none !important;
+        }
+        --highlight-color-focused: var(--ion-color-primary);
+        --border-color: var(--ion-color-primary) !important; // default underline color
+    }
+
+    ion-label {
+        --color: #93A9D6;
+    }
+}
+ion-item {
+  border-color: var(--ion-color-danger, #f1453d);
+}
+
+::ng-deep .item .item-inner {
+    border-color: none !important;
+  }
+
+.labelHelp {
+    margin: 0 23px;
+    background: white;
+    border-radius: 10px;
+    padding-top: 24px;
+    padding-bottom: 34px;
 }
 
 .divContent {
     height: 80%;
     border-top-left-radius: 60px;
-    background-color: white;
     position: relative;
 }
 
-.divContentHelpx:after {
-    content: "";
-    position: absolute;
-    right: 22px;
-    bottom: -32px;
-    z-index: 20;
-    width: 0;
-    height: 0;
-    border: 27px solid transparent;
-    border-right-color: rgb(184, 48, 48);
-    border-left: 0;
-    border-top: 0;
-    margin-top: -13.5px;
-    margin-right: -27px;
-}
-
-.divContentHelp {
-    width: 55px;
-    height: 55px;
-    background: #ffffff;
-    background: radial-gradient(circle 140px at -40% 50%, transparent, transparent 100px, #ffffff 100px),
-        radial-gradient(circle 150px at 80% 50%, transparent, transparent 100px, #ffffff 100px);
-    background-size: 66px 228px, 78px 178px;
-    background-position: 0 0, 100% 0;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: -9px;
-    margin-top: -17px;
-}
 
 .login-content {
     background-size: cover;
@@ -53,13 +58,35 @@
     left: 0;
     bottom: 0;
     right: 0;
-    position: absolute;
+  //  position: absolute;
     z-index: 0;
-    background-image: url("../../assets/imgs/bgPrimary.png") !important;
+    //background-image: url("../../assets/imgs/bgPrimary.png") !important;   
 }
+ion-content.newbg{
+    --background: url("../../assets/imgs/bgPrimary.png") 0 0/100% 100% no-repeat;
+}
+
+.div-newb {
+    padding: 0 40px;
+}
+
+.moreButLabel {
+
+    color: white;
+    font-size: 15px;
+    text-align: left;
+    margin-top: 46px;
+    margin-bottom: 20px;
+    padding: 0 7px;
+}
+
 ion-input {
     --placeholder-color: var(--ion-color-medium);
     --placeholder-opacity: 1;
+}
+.subtext {
+    font-size: 12px;
+    margin-top: 4px;
 }
 
 .pass {
@@ -71,7 +98,11 @@ ion-input {
 }
 
 .buttonDiv {
-    margin-top: 50px;
+    margin-top: 26px;
+}
+
+.newButton {
+    height: 56px;
 }
 
 .inputLigth {
@@ -80,13 +111,52 @@ ion-input {
     padding-left: 16px !important;
     padding-right: 16px !important;
     box-sizing: border-box;
-    background: #f2f2f2;
+    background: #F2F2F2;
     border-radius: 10px;
     height: 48px;
     font-size: 14px;
     position: relative;
     z-index: 10;
     color: var(--ion-color-primary);
+}
+.is-Search {
+    position: absolute;
+    z-index: 20;
+    top: 46px;
+    right: 6px;
+}
+
+.selectLight {
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    padding-left: 26px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+    border: 1px solid #dedede;
+    border-radius: 54px;
+    height: 52px;
+    font-size: 14px;
+    position: relative;
+    z-index: 10;
+    color: var(--ion-color-medium);
+}
+
+.divWait {
+    text-align: center;
+    ion-spinner {
+        width: 30px;
+        height: 30px;
+    }
+}
+.textCRForget {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: white underline;
+    margin-bottom: 46px;
+    margin-top: 20px;
 }
 
 .textCR {
@@ -101,12 +171,7 @@ ion-input {
     position: absolute;
     bottom: 0px;
     left: 10px;
-    font-size: 14px;
+    font-size: 14px; 
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-}
-
-.help1 {
-    padding-top: 22px;
-    padding-bottom: 40px;
 }

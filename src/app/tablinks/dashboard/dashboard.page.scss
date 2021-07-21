@@ -1,6 +1,17 @@
 .topBut {
     --border-radius: 8px !important;
 }
+.extb {
+    margin-top: 60px;
+}
+.extra-tool {
+    position: absolute;
+    top: -40px;
+    background-position: center;
+    height: 133px;
+    background-size: contain;
+    --background: url("../../../assets/imgs/rect-top.svg") no-repeat;
+}
 .home3-top {
     display: inline-flex;
     width: 100%;

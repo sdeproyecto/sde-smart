@@ -1,6 +1,6 @@
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
-import { CustomersClientService } from '../services/fs-client/customers-client.service';
+import { CustomersService } from '../services/fs/customers.service';
 
 @Component({
   selector: 'app-waiting',
@@ -13,7 +13,7 @@ export class WaitingPage implements OnInit {
   img: string;
 
   constructor(
-    public cusService: CustomersClientService,
+    public cusService: CustomersService,
     public navCtrl: NavController) { }
 
   ngOnInit() {

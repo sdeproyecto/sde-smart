@@ -13,9 +13,9 @@ export class AuthService {
     public menu: MenuController,
     public firebaseAuth: AngularFireAuth) {
     this.user = firebaseAuth.authState;
+    console.log(this.user);
     const auxLog = window.localStorage.getItem('phoneData');
-    const auxLog2 = window.localStorage.getItem('fbKey');
-    if (auxLog || auxLog2) {
+    if (auxLog) {
       this.isLoged = true;
     }
     this.menu.close();
@@ -29,8 +29,8 @@ export class AuthService {
   signup(email: string, password: string) {
     /*const firebaseAux = JSON.parse(window.localStorage.getItem('fbKey'));
     console.log(firebaseAux);
-    firebase.initializeApp(firebaseAux);
-    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);*/
+    firebase.initializeApp(firebaseAux);*/
+    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   login(email: string, password: string) {
@@ -49,5 +49,24 @@ export class AuthService {
 
   getActiveUser() {
     return this.firebaseAuth.auth.currentUser;
+  }
+
+  singGoogle() {
+    return this.OAuthProvider(new firebase.auth.GoogleAuthProvider())
+      .then(res => {
+        console.log('Successfully logged in!', res);
+        // alert(JSON.stringify(res));
+      }).catch(error => {
+        console.log(error);
+      });
+  }
+
+  OAuthProvider(provider) {
+    return this.firebaseAuth.auth.signInWithPopup(provider)
+      .then((res) => {
+        console.log(res);
+      }).catch((error) => {
+        console.error(error);
+      });
   }
 }

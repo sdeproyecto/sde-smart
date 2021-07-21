@@ -42,7 +42,7 @@ export class TablinksPage implements OnInit {
     }
   }
 
-  getTab(ev: MouseEvent) {
+  getTab() {
     const aux = this.tabRef.getSelected();
     console.log(aux);
     this.nameTab = aux;

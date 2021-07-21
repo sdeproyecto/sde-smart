@@ -50,8 +50,17 @@ ion-tab-bar {
 .tabHelpCenter {
     width: 80px;
     height: 80px;
-    background: white;
+    // background: white;
     position: relative;
     top: -37px;
     border-radius: 35px;
+}
+
+.helpTab {
+    background: #FFFFFF;
+    --background: #FFFFFF;
+    .divHome, .divProfile {
+        background: #FFFFFF;
+        --background: #FFFFFF;
+    }
 }

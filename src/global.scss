@@ -9,6 +9,31 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+.newButton {
+  --ion-color-base: linear-gradient(180deg, #fee718 26.79%, #f9aa01 99.99%, #ffb92d 100%) !important;
+  --box-shadow: 0px 10px 20px rgba(255, 185, 45, 0.2);
+
+  .helpText {
+    color: var(--ion-color-primary);
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+.libg {
+  background: #EBF1FE;
+  --background: #EBF1FE;
+}
+
+.helpCenter {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  position: absolute;
+}
+
+
 .titleHelp {
   font-style: normal;
   font-weight: bold;

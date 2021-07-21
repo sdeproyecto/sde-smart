@@ -4,6 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilService {
+  auxUser: any;
 
-  constructor() { }
+  constructor() {
+  }
+
+  setUser(val) {
+    this.auxUser = val;
+  }
+
 }

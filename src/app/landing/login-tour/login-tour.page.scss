@@ -1,0 +1,120 @@
+ion-slides {
+  height: 100%;
+}
+
+ion-content.helpTour {
+  --background: url("../../../assets/imgs/bgPrimary.png") 0 0/100% 100% no-repeat;
+}
+
+.swiper-slide {
+  display: block;
+}
+.help-continue {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+  .bt1 {
+    border-radius: 14px;
+    line-height: 62px;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 10px 20px rgba(255, 185, 45, 0.2);
+    background:  var(--ion-color-secondary) !important;
+  }
+  .bt2 {
+    font-size: 18px;
+    border-radius: 14px;
+    line-height: 50px;
+    margin: auto;
+    color: white;
+    width: 180px;
+    height: 50px;
+    box-shadow: 0px 10px 20px rgba(255, 185, 45, 0.2);
+    background:  var(--ion-color-secondary) !important;
+  }
+}
+
+.next-div {
+  cursor: pointer;
+  position: absolute;
+  bottom: 40px;
+  right: 25px;
+  z-index: 20;
+  font-size: 14px;
+  line-height: 13px;
+  color: #d8aa13;
+  opacity: 0.8;
+}
+
+.close-div {
+  cursor: pointer;
+  position: absolute;
+  top: 69px;
+  right: 25px;
+  z-index: 20;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 15px;
+  text-align: center;
+  color: #fff;
+  opacity: 0.75;
+}
+.slide {
+  height: 100%;
+  align-items: center;
+  display: contents;
+  .bot {
+    height: 30%;
+    .title {
+      font-weight: bold;
+      text-align: center;
+      padding: 0 21px;
+      margin: 32px 0;
+      color: white !important;
+      font-size: 16px !important;
+    }
+    .description {
+      line-height: 25px;
+      text-align: center;
+      color: white !important;
+      font-size: 14px !important;
+      margin: 0;
+      padding: 0 21px;
+      margin-bottom: 16px;
+    }
+  }
+  .top {
+    //height: 70%;
+    padding: 20px;
+    //padding-top: 80px;
+    align-items: center;
+    display: inline-flex;
+    text-align: center;
+    margin: auto;
+  }
+}
+::ng-deep .swiper-pagination-bullet {
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.4);
+}
+::ng-deep .swiper-pagination-bullet {
+  background: #f3d499;
+  padding: 0 4px;
+  border-radius: 4px;
+  width: 8px;
+}
+::ng-deep .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #ffb92d !important;
+  padding: 0 4px;
+  border-radius: 4px;
+  width: 20px !important;
+}
+::ng-deep .swiper-pagination-bullets {
+  bottom: 0px !important;
+  left: 50% !important;
+  width: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

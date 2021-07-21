@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356324128218",
+    "project_id": "sde-smart-app",
+    "storage_bucket": "sde-smart-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356324128218:android:fe64e92b02d3e92a95bce3",
+        "android_client_info": {
+          "package_name": "com.sde.smart.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356324128218-uikft863lvie0c64p1q2eb0u0lutbmbu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_b6SWsgQogpwSkpYZo64bz7_iIXviP1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356324128218-uikft863lvie0c64p1q2eb0u0lutbmbu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

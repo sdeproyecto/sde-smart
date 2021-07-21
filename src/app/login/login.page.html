@@ -1,56 +1,68 @@
-<ion-content class="animated fadeIn login auth-page ion-padding bg">
-  <div class="login-content bg">
+<ion-content class="login auth-page newbg">
+  <div class="login-content">
 
     <!-- Logo -->
-    <div class="ion-text-center animated fadeInDown" style="height: 80%;">
-      <div class="logo">
+    <div class="ion-text-center" style="height: 80%;">
+     
+      <div class="helpCenter">
+        <div class="logo">
 
-      </div>
-
-      <div class="divContent">
-        <div class="help1">
-          <ion-text color="tertiary">
-            <h2 class="ion-text-center ion-no-margin titleHelp">
-              Iniciar Sesión
-            </h2>
-          </ion-text>
         </div>
-        <div>
-          <!-- Login form -->
-          <form [formGroup]="todo" (ngSubmit)="login()">
-            <div class="ion-padding-horizontal labelHelp">
-              <p>Código de Funcionario</p>
-              <ion-input class="inputLigth ion-margin-bottom" type="text" formControlName="username" required>
-              </ion-input>
-              <p>Clave</p>
-              <ion-input class="inputLigth ion-margin-top" clearOnEdit="false" type="password"
-                formControlName="password" required></ion-input>
-            </div>
+        <div class="divContent">
+          <div class="ion-padding-top">
+            <form [formGroup]="todo" (ngSubmit)="loginNormal()">
+              <div class="ion-padding-horizontal labelHelp">
+                <ion-item color="none">
+                  <ion-label position="floating">
+                   E-mail
+                  </ion-label>
+                  <ion-input type="text" formControlName="email" required></ion-input>
+                </ion-item>
+                <ion-item color="none">
+                  <ion-label position="floating">
+                   Clave
+                  </ion-label>
+                  <ion-input type="password" formControlName="clave" required></ion-input>
+                </ion-item>
+              </div>
 
-            <!--</form> -->
-
-
-            <div class="ion-text-center ion-padding buttonDiv">
-              <ion-button color="primary" type="submit" [disabled]="!todo.valid" expand="block">
-                <span style="font-size: 24px;">INGRESAR</span>
-              </ion-button>
-            </div>
-
-          </form>
+              <div  class="ion-text-center textCRForget">
+              Olvido de clave?
+              </div>
+              <!--</form> -->
+              <div class="ion-text-center ion-margin-bottom buttonDiv ion-padding-horizontal">
+                <ion-button class="newButton" color="secondary" shape="round" mode="ios" type="submit" [disabled]="!todo.valid" expand="block">
+                  <span class="helpText" style="font-size: 18px;">INGRESAR</span>
+                </ion-button>
+              </div>
+            </form>
+              <div class="div-newb">
+                <div class="moreButLabel">
+                  Ingresar con:
+                </div>
+                <div>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-button (click)="loginGoogle()" size="small" color="secondary" mode="ios" expand="block">
+                        <ion-icon slot="start" src="assets/imgs/google-icon.svg"></ion-icon>
+                        Google
+                      </ion-button>
+                      
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-button (click)="loginFb()" size="small" color="secondary" mode="ios" expand="block">
+                        <ion-icon slot="start" src="assets/imgs/face-icon.svg"></ion-icon>
+                        Facebook
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
-      <div class="divContentHelp">
+        <div class="divContentHelp">
 
-      </div>
-
-
-      <div class="textCR-load">
-        <div class="ion-text-center" (click)="forgot()">
-          <ion-text color="light">
-            <p><span class="pass">Olvido la Clave? Solicite una nueva. </span></p>
-          </ion-text>
         </div>
-        <p>Copyright Software 2021</p>
       </div>
     </div>
   </div>

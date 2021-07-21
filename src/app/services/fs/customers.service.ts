@@ -33,13 +33,13 @@ export class CustomersService {
     // tslint:disable-next-line:variable-name
     _showData = this.showLoading.asObservable();
     firebaseConfig = {
-        apiKey: 'AIzaSyD9V8YFIML3ymn1jwpjRIA6flT7zSR66zA',
-        authDomain: 'sde-master.firebaseapp.com',
-        projectId: 'sde-master',
-        storageBucket: 'sde-master.appspot.com',
-        messagingSenderId: '1034297079589',
-        appId: '1:1034297079589:web:1297',
-        measurementId: 'G-9EG0BX2DY6'
+        apiKey: 'AIzaSyAvcZVDEIzhaqPHF7typYnlpguI3Zf0ca8',
+        authDomain: 'sde-smart-app.firebaseapp.com',
+        projectId: 'sde-smart-app',
+        storageBucket: 'sde-smart-app.appspot.com',
+        messagingSenderId: '356324128218',
+        appId: '1:356324128218:web:d26053e0210e620695bce3',
+        measurementId: 'G-H6DNP30F8Y'
     };
     primaryApp: any;
     dbPrimary: any;
@@ -132,5 +132,63 @@ export class CustomersService {
             .catch((error) => {
                 console.log('Error getting documents: ', error);
             });
+    }
+
+    searchUser(search) {
+        return this.dbPrimary.collection('usuarios').where('email', '==', search)
+            .get()
+            .then((querySnapshot) => {
+                const aux = [];
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data());
+                    aux.push(doc.data());
+                });
+                console.log('aux getting ');
+                return aux;
+            })
+            .catch((error) => {
+                console.log('Error getting documents: ', error);
+            });
+    }
+
+
+    signup(email, password) {
+        console.log(this.dbPrimary.auth().currentUser);
+        return this.dbPrimary.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in
+                console.log(userCredential.user);
+                window.localStorage.setItem('saveUser', '1');
+                return userCredential;
+                // ...
+            })
+            .catch((error) => {
+                console.error(error.code);
+                // ..
+            });
+    }
+
+    signin(email, password) {
+        console.log(this.dbPrimary.auth().currentUser);
+        return this.dbPrimary.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in
+                console.log('Signed in');
+                console.log(userCredential.user);
+                window.localStorage.setItem('saveUser', '1');
+                return userCredential;
+                // ...
+            })
+            .catch((error) => {
+                console.error(error.code);
+                // ..
+            });
+    }
+
+    logOut() {
+        return this.dbPrimary.auth().logout().then((dat) => {
+            console.log(dat);
+            return 'dat';
+        });
     }
 }

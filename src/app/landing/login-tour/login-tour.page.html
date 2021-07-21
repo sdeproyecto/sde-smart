@@ -1,0 +1,34 @@
+<ion-content class="helpTour" (window:resize)="onResize($event)" fullscreen scroll-y="false">
+  <div (click)="next()" class="close-div divSkip">
+    skip
+  </div>
+  <div class="help-continue">
+    <div *ngIf="!isEnd" class="bt1" (click)="nextS(slideWithNav)">
+      <ion-icon style=" font-size: 25px;" color="light" name="chevron-forward-outline">
+      </ion-icon>
+    </div>
+    <div (click)="next()" *ngIf="isEnd" class="bt2">
+      Continuar
+    </div>
+  </div>
+  <div class="helpCenter">
+    <ion-slides #slideWithNav (ionSlideWillChange)="slideChanged(slideWithNav)" pager="true" [options]="slideOpts1">
+      <ion-slide   *ngFor="let item of tour; let i=index;">
+        <div class="slide ion-padding" [style.background]="item.bg_color">
+          <div class="top">
+            <img [src]="item.image" />
+          </div>
+          <div class="bot">
+            <h2 class="title" [style.color]="item.color">
+              {{item.title}}
+            </h2>
+            <p class="description">
+              {{item.description}}
+            </p>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+ 
+</ion-content>

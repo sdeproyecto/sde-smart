@@ -1,6 +1,7 @@
 import { Platform } from '@ionic/angular';
 import { Component } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   constructor(
     public platform: Platform,
+    public splashScreen: SplashScreen,
     public statusBar: StatusBar) {
 
     this.initializeApp();
@@ -17,8 +19,13 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.backgroundColorByHexString('#FF8000');
-      this.statusBar.styleBlackTranslucent();
+      if (this.platform.is('ios')) {
+        this.statusBar.styleBlackTranslucent();
+      } else {
+        this.statusBar.backgroundColorByHexString('#6182f5');
+        this.statusBar.styleBlackTranslucent();
+      }
+      this.splashScreen.hide();
     });
   }
 }
